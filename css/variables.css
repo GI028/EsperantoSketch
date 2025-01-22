@@ -1,0 +1,69 @@
+:root {
+    /* Colors */
+    --primary-color: #0D9B7A;
+    --primary-accent-color: #58D9B8;
+    --secondary-color: #D4EFE6;
+    --background-color: #f5f5f5;
+    --gray-color: #acacac;
+
+    --text-color: #000;
+    --heading-color: #111;
+
+    --white-color: #fff;
+    --black-color: #000;
+
+  
+    /* Typography */
+    --font-family: 'Open Sans', sans-serif;
+    --font-family-heading: 'Arial', sans-serif;
+    --font-size-small: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-large: 1.25rem;
+    --font-size-xlarge: 2rem;
+    --line-height-base: 2;
+    --line-height-heading: 1.5;
+    --font-weight-light: 300;
+    --font-weight-regular: 500;
+    --font-weight-bold: 700;
+    --font-weight-bolder: 900;
+  
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 32px;
+    --spacing-xl: 64px;
+
+    --divider-sm:2px;
+    --divider-md:2px;
+  
+    /* Border Radius */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 16px;
+  
+    /* Shadows */
+    --box-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --box-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.2);
+    --box-shadow-lg: 0 6px 12px rgba(0, 0, 0, 0.3);
+  
+    /* Z-Index */
+    --z-index-base: 10;
+    --z-index-dropdown: 20;
+    --z-index-modal: 30;
+  
+    /* Transition */
+    --transition-duration: 0.3s;
+    --transition-function: ease-in-out;
+  
+    /* Grid and Layout */
+    --grid-gap: 16px;
+    --max-width: 1200px;
+  
+    /* Breakpoints */
+    --breakpoint-sm: 480px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xlg: calc(var(--breakpoint-lg) * 1.2);
+  }
+  
