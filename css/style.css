@@ -18,6 +18,9 @@ h1, h2, h3, h4, h5, h6{
     line-height: var(--line-height-base);
 }
 .navbar{
+    position: sticky;
+    top: 0;
+    z-index: 1;
     background-color: var(--background-color);
     display: flex;
     justify-content: space-between;
@@ -25,6 +28,7 @@ h1, h2, h3, h4, h5, h6{
     align-items: center;
     padding: calc(var(--spacing-md)*1.5);
 }
+
 .navbar *{
     margin: 0;
     padding: 0;
@@ -247,7 +251,6 @@ img{
     object-fit: cover;
 }
 
-
 .section .title{
     font-size: calc(var(--font-size-xlarge)*1.5);
     font-weight: var(--font-weight-bolder);
@@ -256,6 +259,7 @@ img{
 .banner{
     background-size: cover;
     background-position: center;
+    min-height: calc(var(--breakpoint-md)/1.5);
     height: calc(100vh - 70px);
     display: flex;
     align-items: center;

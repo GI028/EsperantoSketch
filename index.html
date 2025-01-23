@@ -20,12 +20,12 @@
         <i class="fa fa-angle-up "></i>
     </a>
     <nav class="navbar">
-        <a href="#" class="logo"><h1 class="uppercase txt-bold">Esperanto</h1></a>
+        <a href="index.html" class="logo"><h1 class="uppercase txt-bold">Esperanto</h1></a>
         <ul class = "nav-items">
-            <li><a href="#" class="active">Home</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Activities</a></li>
-            <li><a href="#">Courses</a></li>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="activities.html">Activities</a></li>
+            <li><a href="courses.html">Courses</a></li>
             <li><a href="#">Archives</a></li>
             <li class = "contact-us-link">
                 <a href="#contacts">Contact Us</a>
@@ -83,7 +83,7 @@
                     <p>English is a language that is spoken by millions of people around the world.</p>
                 </div>
             </section>
-            <a href="#" class="btn">View All Courses</a>
+            <a href="courses.html" class="btn">View All Courses</a>
         </div>
     </section>
 
@@ -141,7 +141,7 @@
                     </div>
                 </div>
             </section>
-            <a href="#" class="btn">View All Activities</a>
+            <a href="activities.html" class="btn">View All Activities</a>
         </div>
     </section>
 
@@ -207,15 +207,7 @@
         </strong>
     </footer>
 
-    <script>
-        $(document).ready(function(){
-            $('.show-hide').click(function(e){
-                let navItems = $('.nav-items');
-                navItems.toggleClass('visible');        
-                let buttonClass = navItems.hasClass('visible') ? 'fa-times' : 'fa-bars';
-                $(e.currentTarget).html('<i class="fa '+buttonClass+'"></i>');
-            });
-        });
+    <script src="js/script.js">
     </script>
 </body>
 </html>
