@@ -12,7 +12,7 @@ $(document).ready(function(){
     let startPosition = 0;
     
     window.addEventListener('scroll', (e) => {
-        let currentScroll = window.pageYOffset;
+        let currentScroll = window.scrollY;
 
         if(!scrolling){
             scrolling = true;
@@ -37,4 +37,55 @@ $(document).ready(function(){
         scrolling = false;
     });
 
+    const swiper = new Swiper('.swiper', {
+        loop: false,
+        slidesPerView:3,
+        spaceBetween:15,
+        centeredSlides:true,
+        effect: 'coverflow',
+        coverflowEffect: {
+            rotate: 30,
+            slideShadows: true,
+        },
+        breakpoints: {
+            // when window width is >= 480px
+            0: {
+                slidesPerView: 1,
+                initialSlide: 0,
+            },
+            480: {
+                slidesPerView: 2,
+                initialSlide: 1,
+            },
+            768: { 
+                slidesPerView: 3,
+                initialSlide: 1,
+            },
+            1000: {
+                slidesPerView: 5,
+                initialSlide: 2,
+            }
+          },
+        initialSlide: 2,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: true,
+        },
+        // Pagination
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            dynamicBullets:true,
+            dynamicMainBullets:2
+        },
+        mousewheel:{
+            enabled:true,
+            forceToAxis:true,
+        },
+        // Navigation arrows
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
 });
