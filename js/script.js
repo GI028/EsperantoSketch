@@ -1,19 +1,29 @@
 $(document).ready(function(){
-    $('.show-hide').click(function(e){
-        let navItems = $('.nav-items');
-        navItems.toggleClass('visible');        
+    let navItems = $('.nav-items');
+    let button = $('.show-hide');
+    let buttonClick=false;
+
+    button.click(function(e){
+        buttonClick=true;
+        navItems.toggleClass('visible');    
         let buttonClass = navItems.hasClass('visible') ? 'fa-times' : 'fa-bars';
-        $(e.currentTarget).html('<i class="fa '+buttonClass+'"></i>');
-    });
+        button.html('<i class="fa '+buttonClass+'"></i>');
+        //wait for the trasition
+        setTimeout(()=>buttonClick=false,600);
+    }); 
+    let hideNavItems=()=>{
+        navItems.removeClass('visible');
+        button.html('<i class="fa fa-bars"></i>');
+    }
 
     const navbar = $('.navbar');
-    const navHeight = navbar.outerHeight();
     let scrolling = false;
     let startPosition = 0;
+    const navHeight = navbar.outerHeight();
     
     window.addEventListener('scroll', (e) => {
+        if(buttonClick) return;
         let currentScroll = window.scrollY;
-
         if(!scrolling){
             scrolling = true;
             startPosition = currentScroll;
@@ -26,8 +36,10 @@ $(document).ready(function(){
         else {
             navbar.css('transition-duration','');
             let scrollIntensity = currentScroll - startPosition;
-            if (scrollIntensity > 100)
+            if (scrollIntensity > 100){
                 navbar.css('transform',`translateY(${-navHeight}px)`);
+                hideNavItems();
+            }
             else if(scrollIntensity < -100)
                 navbar.css('transform','translateY(0px)');
         }
@@ -69,7 +81,7 @@ $(document).ready(function(){
         initialSlide: 2,
         autoplay: {
           delay: 3000,
-          disableOnInteraction: true,
+          disableOnInteraction: false,
         },
         // Pagination
         pagination: {
