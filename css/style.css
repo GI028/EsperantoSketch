@@ -38,62 +38,89 @@ h1, h2, h3, h4, h5, h6{
     flex-wrap: wrap;
     align-items: center;
     padding: calc(var(--spacing-md)*1.5);
-}
+    *{
+        margin: 0;
+        padding: 0;
+        color: var(--primary-color);
+    }
+    h1{
+        color: var(--text-color);
+    }
+    ul{
+        list-style: none;
+        display: flex;
+        align-items: center;
+    }
+    
+    a{
+        text-decoration: none;
+        font-weight: var(--font-weight-regular);
+    }
+    a:not([href]){
+        cursor: default;
+    }
 
-.navbar *{
-    margin: 0;
-    padding: 0;
-    color: var(--primary-color);
-}
-.navbar h1{
-    color: var(--text-color);
-}
-
-.navbar ul{
-    list-style: none;
-    display: flex;
-    align-items: center;
-}
-
-.navbar a{
-    text-decoration: none;
-    font-weight: var(--font-weight-regular);
-}
-
-.navbar li a{
-    display: block;
-    margin: 0 calc(var(--spacing-sm)*1.5);
-}
-.navbar .nav-items li a::after{
-    content: '';
-    display: block;
-    margin-left: 50%;
-    width: 0;
-    height: 2px;
-    background-color: var(--primary-accent-color);
-    transition-duration: var(--transition-duration);
-    transition-timing-function: var(--transition-function);
-}
-.navbar li a:hover::after{
-    margin-left: 0;
-    width: 100%;
-}
-.navbar li a:hover{
-    color: var(--primary-accent-color);
-}
-
-.navbar li a.active{
-    color: var(--primary-accent-color);
-    font-weight: var(--font-weight-bold);
+    li{
+        position: relative;
+    }
+    
+    li a{
+        display: block;
+        margin: 0 calc(var(--spacing-sm)*1.5);
+    }
+    li a>*{
+        vertical-align: middle;
+    }
+    .dropdown{
+        display: block;
+        position: absolute;
+        z-index: 2;
+        width: 100%;
+        min-width: fit-content;
+        right: 0;
+        max-height: 0;
+        height: fit-content;
+        background-color: var(--white-color);
+        overflow: hidden;
+    }
+    li:hover .dropdown{
+        box-shadow: var(--box-shadow-sm);
+        padding-top: var(--spacing-sm);
+        padding-bottom: var(--spacing-sm);
+        max-height: 500px;
+    }
+    .nav-items li a::after{
+        content: '';
+        display: block;
+        margin-left: 50%;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-accent-color);
+        transition-duration: var(--transition-duration);
+        transition-timing-function: var(--transition-function);
+    }
+    li a:hover::after{
+        margin-left: 0;
+        width: 100%;
+    }
+    li a:hover{
+        color: var(--primary-accent-color);
+    }
+    
+    li a.active{
+        color: var(--primary-accent-color);
+        font-weight: var(--font-weight-bold);
+    }
 }
 .nav-items{
     display: block ;
-    overflow: hidden;
     transition-property: none;
 }
 .toggle-menu-icon{
     display: none;
 }
+
+
 .fa{
     font-size: larger;
     color: var(--text-color);
@@ -103,23 +130,38 @@ h1, h2, h3, h4, h5, h6{
     .toggle-menu-icon{
         display: block;
     }
-    .navbar .nav-items{
-        max-height: 0;
-        width: 100%;
-        display: flex;
-        align-items: start;
-        flex-direction: column;
-        order: 100;
-        transition-property: all;
-    }
-    .navbar .nav-items li{
-        width: fit-content;
-        margin-top: var(--spacing-md);
-    }
-    .navbar .nav-items.visible{
-        margin-top: var(--spacing-md);
-        max-height: 1000px;
-        width: 100%;
+    .navbar {
+        .nav-items{
+            overflow: hidden;
+            max-height: 0;
+            width: 100%;
+            display: flex;
+            align-items: start;
+            flex-direction: column;
+            order: 100;
+            transition-property: all;
+        }
+        .nav-items li{
+            width: fit-content;
+            margin-top: var(--spacing-md);
+        }
+        .nav-items.visible{
+            margin-top: var(--spacing-md);
+            max-height: 1000px;
+            width: 100%;
+        }
+        .dropdown{
+            display: none;
+        }
+        .dropdown-btn>i{
+            display: none;
+        }
+        a{
+            cursor: pointer;
+        }
+        a:not([href]){
+            cursor: pointer;
+        }
     }
 }
 
@@ -143,11 +185,18 @@ h1, h2, h3, h4, h5, h6{
     color: var(--white-color);
     border: var(--divider-sm) solid transparent;
     cursor: pointer;
+    font-size: var(--font-weight-regular);
+    i, span{
+        color:var(--white-color)
+    }
 }
 .btn:hover{
     border-color: var(--primary-color);
     background-color: var(--white-color);
     color: var(--primary-color);
+    i,span{
+        color: var(--primary-color);
+    }
 } 
 
 .uppercase{
@@ -192,6 +241,14 @@ h1, h2, h3, h4, h5, h6{
 .bg-gray{
     background-color: var(--gray-color);
 }
+
+.bg-primary{
+    background-color: var(--primary-color);
+}
+
+.bg-secondary{
+    background-color: var(--secondary-color);
+}
 .flex{
     display: flex;
 }
@@ -201,6 +258,9 @@ h1, h2, h3, h4, h5, h6{
 .flex-center{
     justify-content: center;
     align-items: center;
+}
+.space-between{
+    justify-content: space-between;
 }
 .px-sm{
     padding-left: var(--spacing-sm);
@@ -254,8 +314,11 @@ h1, h2, h3, h4, h5, h6{
     margin: auto;
 }
 
-.txt-center{
+.txt-center, .text-center{
     text-align: center;
+}
+.text-right{
+    text-align: right;
 }
 
 .overflow-hidden{
@@ -373,18 +436,20 @@ img{
 
 .activities{
     text-align: center;
-    background-color: var(--secondary-color);
 }
 
 .activities .activity-title{
     color: var(--primary-color);
 }
+.activities .activities-list{
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
 
 .activities .activity{
-    margin: var(--spacing-lg) 0;
     display: flex;
     min-height: 300px;
-    background-color: var(--gray-color);
 }
 .activities .activity>*{
     flex: 1;
@@ -610,4 +675,161 @@ img{
     a:hover{
         color: var(--primary-color);
     }
+}
+
+
+.search-form{
+    border: var(--divider-sm) solid var(--primary-color);
+    height: 40px;
+    width: fit-content;
+    margin: auto;
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    background-color: var(--white-color);
+    input{
+        -webkit-appearance: none; /* Disable default search input styles in WebKit browsers */
+        appearance: none;
+        padding-left: var(--spacing-sm);
+        height: 100%;
+        border: none;
+        width: 300px;
+    }
+    input:focus{
+        /* border: none; */
+        outline: none;
+        color: var(--primary-color);
+        font-size: var(--font-weight-regular);
+        font-weight: var(--font-weight-bold);
+    }
+    .btn{
+        height: 100%;
+        border-radius: 0;
+        border:none;
+        padding: 0 var(--spacing-sm);
+        border-left: var(--divider-sm) solid transparent;
+    }
+
+    .btn:hover{
+        /* background-color: var(--primary-accent-color); */
+        border: none;
+        border-left: var(--divider-sm) solid var(--primary-color);
+    }
+}
+
+@media screen and  (max-width: 480px){
+    .search-form{
+        input{
+            width: 200px;
+        }
+        .btn>span{
+            display: none;
+        }
+    }
+    
+}
+
+.cart{
+    width:300px;
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: var(--box-shadow-md);
+    margin-bottom: 15px;
+    height: fit-content;
+    .cart-image{
+        img{
+            min-height: 250px;
+            object-fit: cover;
+        }
+    }
+    .cart-content{
+        padding: var(--spacing-sm);
+        p{
+            text-align: justify;
+        }
+    }
+}
+.overlay{
+    position: fixed; /* Sit on top of the page content */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.638); /* Black background with opacity */
+    z-index: 300; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    div{
+        position: relative;
+        cursor: default;
+        width: fit-content;
+        height: min-content;
+        padding: 0;
+    }
+    .close{
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        z-index: 301;
+        right: -8px;
+        top:-5px;
+        i{
+            color: red;
+            font-size: var(--font-size-large);
+        }
+        margin: var(--spacing-sm);
+    }
+    .close:hover i{
+        transform: scale(1.2);
+    }
+    .dropdown.nav-items{
+        background-color: var(--white-color);
+        padding: var(--spacing-lg);
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+        margin: 0;
+        border-radius: var(--border-radius-sm);
+        li{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }  
+        a{
+            text-decoration: none;
+            padding: var(--spacing-sm);
+            color: var(--primary-color);
+            font-weight: var(--font-weight-regular);
+            border-radius: var(--border-radius-sm);
+            position: relative;
+        }
+        a::before{
+            content: '';
+            position: absolute;
+            width: 0px;
+            height: 2px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 0;
+            transition: all 0.5s ease-in-out;
+        }
+        a:hover::before{
+            width: 100%;
+        }
+        a:hover{
+            font-weight: var(--font-weight-bold);
+        }
+    }
+}
+/* .overlay>div{
+    
+} */
+
+.hidden{
+    display: none;
 }
