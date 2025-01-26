@@ -1,4 +1,18 @@
-$(document).ready(function(){
+$.get("navbar.html")
+.then((data) => {
+    $("body").prepend(data);
+})
+.then(()=>$.get("footer.html"))
+.then((data) => {
+    $('body').append(data);
+})
+.then(()=>$(document).ready(MyApp))
+.catch((error) => {
+    $(document).ready(()=>$('body').html('<h1 class="txt-center" >Something went wrong</h1>'));
+    // $('.body').html('<h1>Something went wrong</h1>');
+});
+
+function MyApp(){
     let navItems = $('.nav-items');
     let button = $('.show-hide');
     let buttonClick=false;
@@ -140,4 +154,4 @@ $(document).ready(function(){
             $(this).addClass('hidden');
     });
 
-});
+}
