@@ -1,8 +1,8 @@
-$.get("navbar.html")
+$.get("components/navbar.html")
 .then((data) => {
     $("body").prepend(data);
 })
-.then(()=>$.get("footer.html"))
+.then(()=>$.get("components/footer.html"))
 .then((data) => {
     $('body').append(data);
 })
@@ -154,4 +154,27 @@ function MyApp(){
             $(this).addClass('hidden');
     });
 
+    try {
+        const selectizeInstances = $('.selectize-select').selectize({
+            plugins: ['remove_button', 'clear_button'],
+            normalize: true ,
+            closeAfterSelect:true,
+            searchField: ["text", "value"],
+        }).map(function(){
+            return this.selectize;
+        }).toArray();
+
+
+        selectizeInstances.forEach(function(instance){
+            instance.on('focus', function () {
+                selectizeInstances.forEach(function(otherInstance) {
+                    if (otherInstance !== instance) {
+                        otherInstance.blur();
+                    }
+                });
+            });
+        })
+    } catch (error) {
+        console.log(error);
+    }
 }
