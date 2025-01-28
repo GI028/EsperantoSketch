@@ -145,8 +145,11 @@ h1, h2, h3, h4, h5, h6{
             transition-property: all;
         }
         .nav-items li{
-            width: fit-content;
+            width: 100%;
             margin-top: var(--spacing-md);
+            a{
+                width: 100%;
+            }
         }
         .nav-items.visible{
             margin-top: var(--spacing-md);
@@ -211,7 +214,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 
-.floating-up-btn{
+.floating-action-btn{
     z-index: 100;
     position: fixed;
     bottom: 40px;
@@ -225,15 +228,15 @@ h1, h2, h3, h4, h5, h6{
     cursor: pointer;
     box-shadow: var(--box-shadow-md);
 }
-.floating-up-btn .fa-angle-up{
+.floating-action-btn .fa-angle-up{
     color: var(--white-color);
 }
-.floating-up-btn:hover .fa-angle-up{
+.floating-action-btn:hover .fa-angle-up{
     color: var(--primary-color);
 }
 
 @media screen and (max-width:480px) {
-    .floating-up-btn{
+    .floating-action-btn{
         bottom: 10px;
         right: 10px;
     }
@@ -303,13 +306,36 @@ h1, h2, h3, h4, h5, h6{
     margin-bottom: var(--spacing-md);
 }
 
+.mb-lg{
+    margin-bottom: var(--spacing-lg);
+}
+
 .my-md{
     margin-top: var(--spacing-md);
     margin-bottom: var(--spacing-md);
 }
+.my-lg{
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+ul.aligned{
+    li {
+        position: relative; 
+        padding-left: 1.5em; 
+    }
+    li::before {
+        position: absolute; 
+        left: 0; 
+        top: 0; 
+    }
+}
 
 .border-md{
     border-radius: var(--border-radius-md);
+}
+.border-sm{
+    border-radius: var(--border-radius-sm);
 }
 
 .container{
@@ -319,6 +345,9 @@ h1, h2, h3, h4, h5, h6{
 
 .txt-center, .text-center{
     text-align: center;
+}
+.text-justify{
+    text-align: justify;
 }
 .text-right{
     text-align: right;
@@ -332,8 +361,11 @@ img{
     object-fit: cover;
 }
 
-.section .title{
+.banner.section .title{
     font-size: calc(var(--font-size-xlarge)*1.5);
+}
+.section .title{
+    font-size: calc(var(--font-size-xlarge));
     font-weight: var(--font-weight-bolder);
 }
 
@@ -488,9 +520,10 @@ img{
 .contacts .contact-form{
     display: flex;
     align-items: center;
-    
+    margin-bottom: var(--spacing-lg);
     .title>*{
         display: block;
+        line-height: var(--line-height-heading);
     }
     .title{
         text-align: center;
@@ -499,7 +532,7 @@ img{
             animation:fly 2s ease-in-out alternate infinite;
         }
         i{
-            font-size: calc(var(--font-size-xlarge)*2.5);
+            font-size: calc(var(--font-size-xlarge)*1.2);
             animation: rot 0.7s linear alternate infinite;
         }
     }
@@ -524,7 +557,6 @@ img{
     flex: 1;
 }
 .contacts .contact-form form{
-    padding: var(--spacing-lg) 0;
     div:not(:last-child){
        margin-bottom: var(--spacing-md); 
     }
@@ -580,7 +612,7 @@ img{
     .contacts .contact-form{
         flex-direction: column;        
         .title i{
-            font-size: calc(var(--font-size-xlarge)*1.5);
+            font-size: var(--font-size-xlarge);
         }
         .title *{
             margin: 0;
@@ -1009,4 +1041,67 @@ img{
 
 i{
     color: inherit;
+}
+
+@media screen and (max-width: 768px) {
+    .initiatives .flex-same{
+        flex-direction: column;
+    }
+}
+
+
+
+.glow-on-hover {
+    cursor: pointer;
+    position: relative;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -5px;
+    left:-5px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+.scroll-top.hidden{
+    display: block;
+    transform: translateX(100px);
 }

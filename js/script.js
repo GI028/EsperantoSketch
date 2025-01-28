@@ -34,7 +34,8 @@ function MyApp(){
     let scrolling = false;
     let startPosition = 0;
     const navHeight = navbar.outerHeight();
-    
+    const toTopButton = $('.floating-action-btn.scroll-top');
+
     window.addEventListener('scroll', (e) => {
         if(buttonClick) return;
         let currentScroll = window.scrollY;
@@ -57,6 +58,12 @@ function MyApp(){
             else if(scrollIntensity < -100)
                 navbar.css('transform','translateY(0px)');
         }
+
+        if(currentScroll > 300)
+            toTopButton.removeClass('hidden');
+        else
+            toTopButton.addClass('hidden');
+
     });
     
     window.addEventListener('scrollend', () => {
@@ -175,6 +182,12 @@ function MyApp(){
             });
         })
     } catch (error) {
-        console.log(error);
     }
+
+    $('.scroll-top').on('click',function(e){
+        e.preventDefault()
+        $('html,body').scrollTop(0);
+        if(window.location.hash.length!=0)
+            window.history.pushState("", document.title, window.location.pathname); 
+    })
 }
